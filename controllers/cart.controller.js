@@ -30,6 +30,20 @@ class CartController {
 			})
 		}
 	}
+
+	async remove(req, res) {
+		try {
+			const user = req.user.id
+			const product = req.params.id
+			const cart = await CartService.remove(user, product)
+			res.json(cart)
+		} catch (e) {
+			res.status(400).send({
+				message: 'Error while deleting product from cart',
+				error: e.message,
+			})
+		}
+	}
 }
 
 module.exports = new CartController()

@@ -28,5 +28,21 @@ class CartService {
 		})
 		return updatedCart
 	}
+
+	async remove(userId, id) {
+		await Cart.destroy({ where: { id } })
+		const cart = await Cart.findAll({
+			where: { userId },
+			order: [['createdAt', 'DESC']],
+			include: [{ model: Product, attributes: ['name', 'photo'] }],
+		})
+		let endedPrice = 0
+		let cartCount = 0
+		for (let i = 0; i < cart.length; i++) {
+			endedPrice += cart[i].price
+			cartCount += cart[i].count
+		}
+		return { cart, cartCount, endedPrice }
+	}
 }
 module.exports = new CartService()
