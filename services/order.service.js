@@ -22,6 +22,7 @@ class OrderService {
 			cart,
 			orderStatusId: 1,
 		})
+		await Cart.destroy({ where: { userId }, truncate: true })
 		return order
 	}
 }
