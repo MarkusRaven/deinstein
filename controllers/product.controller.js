@@ -16,7 +16,7 @@ class ProductController {
 	async getProductsWithFilter(req, res) {
 		try {
 			const products = await ProductService.getProductsWithFilter(
-				req.params.productTypeId
+				req.body.productTypeId
 			)
 			return res.json(products)
 		} catch (e) {

@@ -4,7 +4,7 @@ const router = Router()
 
 router.get('/', ProductController.getProducts)
 
-router.get('/filter/:productTypeId', ProductController.getProductsWithFilter)
+router.post('/filter', ProductController.getProductsWithFilter)
 
 router.post('/add', ProductController.addProduct)
 

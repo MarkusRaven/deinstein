@@ -16,27 +16,26 @@ class UserService {
 		}
 	}
 	async editUser(id, profile) {
-		const user = await this.getUser(id)
-		if (profile.hasOwnProperty('old_password')) {
+		const user = await User.findByPk(id)
+		const newProfile = { ...profile }
+		if (profile.old_password) {
+			if (!profile.new_password) {
+				throw new Error('Новый пароль не задан')
+			}
 			const isPassEquals = await bcrypt.compare(
 				profile.old_password,
 				user.password
 			)
 			if (!isPassEquals) {
-				throw new Error(
-					'The old password and the entered password do not match'
-				)
+				throw new Error('Неверно введён старый пароль')
 			}
 			delete profile.old_password
+			const hashedPassword = await bcrypt.hash(profile.new_password, 3)
+			if (hashedPassword) {
+				newProfile.password = hashedPassword
+			}
 		}
-		const hashedPassword = await bcrypt.hash(profile.new_password, 3)
-		await User.update(
-			{
-				...profile,
-				password: hashedPassword,
-			},
-			{ where: { id } }
-		)
+		await User.update(newProfile, { where: { id } })
 		const updatedProfile = await User.findByPk(id)
 		return {
 			user: {

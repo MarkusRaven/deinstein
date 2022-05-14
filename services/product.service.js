@@ -7,7 +7,9 @@ class ProductService {
 		return products
 	}
 	async getProductsWithFilter(productTypeId) {
-		const products = await Products.findAll({ where: { productTypeId } })
+		const products = await Products.findAll({
+			where: { productTypeId },
+		})
 		return products
 	}
 	async addProduct(
