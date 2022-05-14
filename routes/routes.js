@@ -2,6 +2,7 @@ const fileUpload = require('express-fileupload')
 
 module.exports = function (app) {
 	app.use('/', require('./auth.routes'))
+	app.use('/user', require('./user.routes'))
 	app.use('/filter', require('./filter.routes'))
 	app.use('/product', fileUpload({}), require('./product.routes'))
 	app.use('/cart', require('./cart.routes'))
