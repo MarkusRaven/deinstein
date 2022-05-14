@@ -7,7 +7,7 @@ const fileUpload = require('express-fileupload')
 const PORT = process.env.PORT || 3000
 const sequelize = require('./db')
 
-app.use(fileUpload({}))
+// app.use(fileUpload({}))
 app.use(express.json({ extended: true }))
 app.use(cors({ credentials: true, origin: '*' }))
 app.use(express.urlencoded({ extended: true }))

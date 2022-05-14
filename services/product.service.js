@@ -19,7 +19,9 @@ class ProductService {
 		productTypeId
 	) {
 		let fileName = []
+		console.log(photos.photo)
 		for (let i = 0; i < photos.photo.length; i++) {
+			console.log(photos)
 			const product = photos.photo[i]
 			fileName.push(FileService.saveFile(product, 'items'))
 		}
