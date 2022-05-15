@@ -3,10 +3,10 @@
      <div class="intro__wrapper">
         <div class="intro">
           <section class="intro__info">
-            <h1 class="intro__title">Create a tile design for yourself</h1>
-            <p class="intro__text appText">And that's how it works:</p>
-            <p class="appText">Choose your stone, choose your design, enter your Maybe, You order and we deliver.</p>  
-            <a href="#" class="appBtn intro__btn">TO THE SHOP</a>
+            <h1 class="intro__title">Выберите дизайн плитки под себя</h1>
+            <p class="intro__text appText">Как это работает:</p>
+            <p class="appText">Выберите свой камень, выберите свой дизайн, введите свое имя, Вы заказываете, и мы доставляем.</p>  
+            <router-link to="/tiles" class="appBtn intro__btn">Каталог</router-link>
           </section>
           <div class="intro__images images">
             <div class="images__arearight">
@@ -25,32 +25,18 @@
       </div>
       <section class="recommend">
         <h2 class="appTitle">
-          Recommendations for you
+          Рекомендации для тебя
         </h2>
         <div class="recommend__wrapper product">
-          <div class="product__item">
-            <img src="../assets/img/rec1.png" alt="Modern Kitchens" class="product__img">
-            <h3 class="product__title">Modern Kitchens</h3>
-            <p class="appText product__text">Light tiles for the kitchen with a beautiful finish for a unique, ultra-modern style.</p>
-            <a href="" class="product__btn appBtn appBtn--outline">VIEW ALL</a>
-          </div>
-          <div class="product__item">
-            <img src="../assets/img/rec2.png" alt="Modern Kitchens" class="product__img">
-            <h3 class="product__title">Traditional Kitchens</h3>
-            <p class="appText product__text">The aged light tones of the tiles make traditional kitchens a popular choice in country houses.</p>
-            <a href="" class="product__btn appBtn appBtn--outline">VIEW ALL</a>
-          </div>
-          <div class="product__item">
-            <img src="../assets/img/rec3.png" alt="Modern Kitchens" class="product__img">
-            <h3 class="product__title">Minimalistic bathrooms</h3>
-            <p class="appText product__text">Dark tile tones will make the bathroom interior expensive and emphasize minimalism.</p>
-            <a href="" class="product__btn appBtn appBtn--outline">VIEW ALL</a>
-          </div>
-          <div class="product__item">
-            <img src="../assets/img/rec4.png" alt="Modern Kitchens" class="product__img">
-            <h3 class="product__title">High-tech bathrooms</h3>
-            <p class="appText product__text">The gray tones of the tiles will make the shape of the bathroom more strict, clear and concise.</p>
-            <a href="" class="product__btn appBtn appBtn--outline">VIEW ALL</a>
+          <div class="product__item" v-for="item in shopItems" :key="item.id">
+            <router-link class="shopitem__link" :to="{ name: 'Tile', params: {id: item.id}}">
+              <img :src="`${ApiInstance}${item.photo?.[0]}`" alt="Modern Kitchens" class="product__img">
+            </router-link>
+            <div class="product__body">
+              <h3 class="product__title">{{item.name}}</h3>
+              <p class="appText product__text">{{item.item_desc.substring(0, 100) + '...'}}</p>
+              <router-link to="/Tiles" class="product__btn appBtn appBtn--outline">Подробнее</router-link>
+            </div>
           </div>
         </div>
       </section>
@@ -59,64 +45,29 @@
           <div class="createnow__wrapper">
             <img src="../assets/img/createnowimg.png" alt="" class="createnow__img">
             <section class="createnow__info">
-              <h2 class="appTitle createnow__title">Create your own tile design</h2>
-              <p class="createnow__text appText">Creating tiles to fit your size is what we do best-let's show you how to get started…</p>
-              <button class="createnow__btn appBtn appBtn--outline">CREATE NOW</button>
+              <h2 class="appTitle createnow__title">Выберите ваш дизайн</h2>
+              <p class="createnow__text appText">Выберите дизайн камня под ваш интерьер</p>
+              <button class="createnow__btn appBtn appBtn--outline">Выбрать сейчас</button>
             </section>
           </div>
         </div>  
       </div>
-      <section class="interested">
-        <h2 class="appTitle">You will be interested</h2>
-        <div class="interested__wrapper">
-          <a href="#" class="interested__item">
-            <a href="#" class="interested__img">
-              <img src="../assets/img/int1.png" alt="">
-              <span>SEE MORE</span>
-            </a>          
-            <h3 class="interested__title">New tiles in DeinSteinDesign</h3>
-            <p class="interested__text appText">Check out the new tiles in the DeinSteinDesign assortment.</p>
-          </a>
-          <a href="#" class="interested__item">
-            <a href="#" class="interested__img">
-              <img src="../assets/img/int2.png" alt="">
-              <span>SEE MORE</span>
-            </a>  
-            <h3 class="interested__title">Tiles at affordable prices</h3>
-            <p class="interested__text appText">See a selection of different tiles at affordable prices.</p>
-          </a>
-          <a href="#" class="interested__item">
-            <a href="#" class="interested__img">
-              <img src="../assets/img/int3.png" alt="">
-              <span>SEE MORE</span>
-            </a>
-            <h3 class="interested__title">Create a tile design with a cutout for the sink</h3>
-            <p class="interested__text appText">Create your own tile design with a cutout for the sink with the help of our editor.</p>
-          </a>
-        </div>
-        <button class="appBtn appBtn--outline interested__btn">
-          READ MORE
-        </button>
-      </section>
   </main>
 </template>
 
 <script>
 
-
+import { ApiInstance } from '../config'
+import {getItems} from '@/api/shop'
 export default {
   name: 'Home',
   data: () =>({
-    arr: [],
+    shopItems: [],
+    ApiInstance
   }),
-  mounted(){
+  async mounted(){
+    this.shopItems = (await getItems()).slice(0, 6)
   },
-  methods: {
-   
-  },
-  components: {
-    
-  }
 }
 </script>
 <style lang="less">

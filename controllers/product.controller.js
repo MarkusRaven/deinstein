@@ -13,6 +13,18 @@ class ProductController {
 		}
 	}
 
+	async getProduct(req, res) {
+		try {
+			const products = await ProductService.getProduct(req.params.productId)
+			return res.json(products)
+		} catch (e) {
+			res.status(404).send({
+				message: 'Error when get products',
+				error: e.message,
+			})
+		}
+	}
+
 	async getProductsWithFilter(req, res) {
 		try {
 			const products = await ProductService.getProductsWithFilter(

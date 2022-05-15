@@ -1,39 +1,34 @@
 <template>
   <main class="cart appWrapper">
     <div class="breadcrumbs">
-      <router-link to="home" class="breadcrumbs__link appText">{{$t('home')}}</router-link>
+      <router-link to="/" class="breadcrumbs__link appText">{{$t('home')}}</router-link>
       <span>/</span>
       <a class="breadcrumbs__active">{{$t('deinsteindesign')}}</a>
     </div>
     <div class="cart__row">
       <div class="cart__info">
         <h1 class="cart__title appTitle appTitle--left">
-          My Shopping cart
+          Корзина
         </h1>
         <p class="appText">
-          Please choose a payment method
+          Проверьте выбранные товары
         </p>
         <div class="cart__items">
-          <div class="cart__item itemSmall" v-for="item in cart.related_items" :key="item.id">
+          <div class="cart__item itemSmall" v-for="item in cart.cart" :key="item.id">
             <img 
               src="../assets/img/close.svg" 
               class="itemSmall__close"
               @click="deleteItem(item)"
             >
-            <img src="../assets/img/cartimg.png" alt="" class="itemSmall__img">
+            <img :src="`${ApiInstance}${item.product?.photo?.[0]}`" class="itemSmall__img">
             <div class="itemSmall__info">
-              <h4 class="itemSmall__title">{{item.item.title}}</h4>
+              <h4 class="itemSmall__title">{{item.product?.name}}</h4>
               <p class="itemSmall__desc">
                 Shower tray silver sparkie granite stone.
               </p>
-              <div class="itemSmall__count">
-                  <span>1pcs</span>
-                  <span>|</span>
-                  <span>Pcs</span>
-                </div>
               <div class="itemSmall__price">
                 <p>Price:</p> 
-                <span class="itemSmall__priceinfo">€ {{item.item.price}}</span> 
+                <span class="itemSmall__priceinfo">{{item?.price}} р.</span> 
               </div>
             </div>
           </div>
@@ -49,14 +44,14 @@
             <p>Guaranteed Readiness day: August 21, 2021</p>
           </div>
           <div class="price__count">
-            {{cart.final_price}} EUR
+            {{totalPrice}} р.
           </div>
         </div>  
         <button 
           class="appBtn appBtn--outline total__btn"
-          @click="$router.push('/payment')"
+          @click="goToPayment()"
         >
-          Proceed to checkout
+          Оформить заказ
         </button>     
       </div>
     </div>
@@ -66,22 +61,31 @@
 
 <script>
 import {mapGetters} from "vuex"
+import { ApiInstance } from '../config'
 
 export default {
   name: 'Cart',
+  data: () => ({ApiInstance}),
   mounted(){
     console.log(this.cart)
   },
   methods: {
     deleteItem(item){
-      this.$store.dispatch('deleteCartItem', {
-        CIid: item.id, 
-        Iid: item.item.id
-      })
+      this.$store.dispatch('deleteCartItem', item.id)
+    },
+    toOrder(){
+      this.$router.push(this.isLoggedIn ? '/payment' : {name: 'Home', params: {
+          login: true,
+          message: 'Для оформления заказа, нужно быть авторизованым'
+        }})
+    },
+    goToPayment(){
+      this.cart.cart.length
+        ? this.$router.push('/payment') : alert('Корзина пустая')
     }
   },
   computed: {
-    ...mapGetters(['cart']),
+    ...mapGetters(['cart', 'totalPrice', 'isLoggedIn']),
   }
 }
 </script>

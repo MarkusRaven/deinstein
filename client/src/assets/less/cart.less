@@ -12,10 +12,12 @@
   &__info{
     .col();
     .size(7);
+    .size-md(12)
   }
   &__total{
     .col();
     .size(5);
+    .size-md(12);
     border: 2px solid #44324B;
     padding: 30px;
   }
@@ -56,6 +58,14 @@
     display: block;
   }
 }
+.sm-block({
+  .cart__item{
+    flex-wrap: wrap;
+    & .itemSmall__title{
+      margin-top: 10px;
+    }
+  }
+});
 
 .total{
   &__title{

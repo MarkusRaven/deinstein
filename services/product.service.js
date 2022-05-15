@@ -6,6 +6,10 @@ class ProductService {
 		const products = await Products.findAll()
 		return products
 	}
+	async getProduct(id) {
+		const products = await Products.findOne({ where: { id: id } })
+		return products 
+	}
 	async getProductsWithFilter(productTypeId) {
 		const products = await Products.findAll({
 			where: { productTypeId },

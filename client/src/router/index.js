@@ -14,10 +14,10 @@ const routes = [
     component: () => import( '../views/Tiles.vue')
   },
   {
-    path: '/privacy',
-    name: 'Privacy',
+    path: '/tiles/:id',
+    name: 'Tile',
     meta: {layout: 'main'},
-    component: () => import( '../views/Privacy.vue')
+    component: () => import( '../views/Tile.vue')
   },
   {
     path: '/payment',
@@ -30,12 +30,6 @@ const routes = [
     name: 'Cart',
     meta: {layout: 'main'},
     component: () => import( '../views/Cart.vue')
-  },
-  {
-    path: '/paypal',
-    name: 'Paypal',
-    meta: {layout: 'main'},
-    component: () => import( '../views/PayPal.vue')
   },
   {
     path: '/thanks',

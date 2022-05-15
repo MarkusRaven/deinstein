@@ -2,9 +2,9 @@ import instance from './instance'
 
 export const getItems = (data = {}) => {
   return new Promise((resolve, reject) => {
-    instance.get(`shop/item/`, {params: data})
+    instance.get(`product`, {params: data})
      .then(resp => {
-       resolve(resp.data.results)
+       resolve(resp.data)
      })
      .catch(err => {
        reject(err)
@@ -14,7 +14,7 @@ export const getItems = (data = {}) => {
 
 export const getOneItem = id => {
   return new Promise((resolve, reject) => {
-    instance.get(`shop/item/${id}`)
+    instance.get(`product/${id}`)
      .then(resp => {
        resolve(resp.data)
      })
@@ -23,6 +23,19 @@ export const getOneItem = id => {
      })
    })
 }
+
+export const getItemsType = data => {
+  return new Promise((resolve, reject) => {
+    instance.post(`product/filter/`, data)
+     .then(resp => {
+       resolve(resp.data)
+     })
+     .catch(err => {
+       reject(err)
+     })
+   })
+}
+
 
 export const getFilterMaterial = () => {
   return new Promise((resolve, reject) => {
@@ -48,65 +61,81 @@ export const getFilterTypes = () => {
    })
 }
 
-export const getFilterColor = () => {
+export const getFilter = () => {
   return new Promise((resolve, reject) => {
-    instance.get(`shop/item_material_color/`)
+    instance.get(`filter/`)
      .then(resp => {
-       resolve(resp.data.results)
+       resolve(resp.data)
      })
      .catch(err => {
        reject(err)
      })
    })
 }
-export const paypalOrder = data => {
+
+export const getUser = () => {
   return new Promise((resolve, reject) => {
-    instance.post(`shop/paypal_order/`, data)
+    instance.get(`user/profile/`)
      .then(resp => {
-       resolve(resp)
+       resolve(resp.data)
      })
      .catch(err => {
        reject(err)
      })
    })
 }
-export const Order = data => {
+
+export const editUser = data => {
   return new Promise((resolve, reject) => {
-    instance.post(`shop/order/`, data)
+    instance.post(`user/profile/edit/`, data)
      .then(resp => {
-       resolve(resp)
+       resolve(resp.data)
+     })
+     .catch(err => {
+       reject(err.response.data)
+     })
+   })
+}
+
+export const getOrders = () => {
+  return new Promise((resolve, reject) => {
+    instance.get(`order/`)
+     .then(resp => {
+       resolve(resp.data)
      })
      .catch(err => {
        reject(err)
      })
    })
 }
-// export const createCart = () => {
-//   return new Promise((resolve, reject) => {
-//     instance.post(`shop/cart/`)
-//      .then(resp => {
-//        resolve(resp.data.results)
-//      })
-//      .catch(err => {
-//        reject(err)
-//      })
-//    })
-// }
-// export const getCartId = id => {
-//   return new Promise((resolve, reject) => {
-//     instance.get(`shop/cart/${id}`)
-//      .then(resp => {
-//        resolve(resp.data.results)
-//      })
-//      .catch(err => {
-//        reject(err)
-//      })
-//    })
-// }
+
+export const orderAdd = data => {
+  return new Promise((resolve, reject) => {
+    instance.post(`order/add/`, data)
+     .then(resp => {
+       resolve(resp.data)
+     })
+     .catch(err => {
+       reject(err)
+     })
+   })
+}
+
+export const orderPay = data => {
+  return new Promise((resolve, reject) => {
+    instance.post(`payment/pay/`, data)
+     .then(resp => {
+       resolve(resp.data)
+     })
+     .catch(err => {
+       reject(err)
+     })
+   })
+}
 
 export const getCartUser = () => {
   return new Promise((resolve, reject) => {
-    instance.get(`shop/cart/me`)
+    instance.get(`cart/`)
      .then(resp => {
        resolve(resp.data)
      })
@@ -118,7 +147,7 @@ export const getCartUser = () => {
 
 export const addToCard = data => {
   return new Promise((resolve, reject) => {
-    instance.post(`shop/cart_item/`, data)
+    instance.post(`cart/add/`, data)
      .then(resp => {
        resolve(resp.data.results)
      })
@@ -130,7 +159,7 @@ export const addToCard = data => {
 
 export const deleteCartItemFetch = id => {
   return new Promise((resolve, reject) => {
-    instance.delete(`shop/cart_item/${id}`)
+    instance.get(`cart/remove/${id}`)
      .then(resp => {
        resolve(resp.data.results)
      })
@@ -140,17 +169,6 @@ export const deleteCartItemFetch = id => {
    })
 }
 
-export const getOrders = () => {
-  return new Promise((resolve, reject) => {
-    instance.get(`shop/order/me`)
-     .then(resp => {
-       resolve(resp.data.results)
-     })
-     .catch(err => {
-       reject(err)
-     })
-   })
-}
 export const ActivateUser = data => {
   return new Promise((resolve, reject) => {
     instance.post(`auth/users/activation/`, data)

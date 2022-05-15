@@ -6,31 +6,32 @@
           <svg width="158" height="111" id="logosite">
             <use xlink:href="../assets/img/DeinSteinLogo.svg#logo"></use>
           </svg>
+          <svg width="158" height="32" id="logomobile">
+            <use xlink:href="../assets/img/editorLogo.svg#logo"></use>
+          </svg>
         </router-link>
-        <div class="mainnav__wrapper">
+        <div class="mainnav__menu" @click="menu = !menu">
+          <svg width="22" height="15">
+              <use xlink:href="../assets/icon/mobile.svg#burger"></use>
+            </svg>
+        </div>
+        <div 
+          class="mainnav__wrapper"
+          :class="menu && 'mainnav__open'"
+        >
+          <router-link to="/" class="mainnav__logo mainnav__mobilelogo">
+            <svg width="158" height="111" id="logositemodbile">
+              <use xlink:href="../assets/img/DeinSteinLogo2.svg#logo"></use>
+            </svg>
+          </router-link>
           <ul class="mainnav__list">
             <li class="mainnav__item">
-              <router-link to="/" class="mainnav__link">Home</router-link>
+              <router-link to="/" class="mainnav__link">Главная</router-link>
             </li>
             <li class="mainnav__item">
-              <router-link to="/Tiles" class="mainnav__link">Tiles</router-link>
-            </li>
-            <li class="mainnav__item">
-              <app-select 
-                :items="items" 
-                @select="setLocale($event)" 
-                :selected="lang"             
-              />
+              <router-link to="/Tiles" class="mainnav__link">Каталог</router-link>
             </li>
           </ul>
-          <div class="mainnav__search search">
-            <div class="search__icon">
-              <svg width="14" height="14" >
-                <use xlink:href="../assets/icon/search.svg#search"></use>
-              </svg>
-            </div>
-            <input type="text" placeholder="What are you looking for?">
-          </div>
           <div class="mainnav__icon icon">
             <a @click="onOpen()"> 
               <svg width="24" height="24">
@@ -51,71 +52,11 @@
     <router-view />
     <!-- footer -->
     <footer class="mainfooter">
-        <div class="mainfooter__wrapper">
-          <router-link to="/" class="mainfooter__logo">
-            <svg width="158" height="111">
-              <use xlink:href="#logosite"></use>
-            </svg>
-          </router-link>
-          <ul class="mainfooter__list">
-            <li class="mainfooter__listitem">
-              <a href="" class="mainfooter__link">Navigation</a>
-              <ul class="mainfooter__sublist">
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">Home</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">DeinSteinDesign</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">KITCHEN</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">Mehr</a>
-                </li>
-              </ul>
-            </li>
-            <li class="mainfooter__listitem">
-              <a href="" class="mainfooter__link">Connections</a>
-              <ul class="mainfooter__sublist">
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">Facebook</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">Twitter</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">KITCHEN</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">Mehr</a>
-                </li>
-              </ul>
-            </li>
-            <li class="mainfooter__listitem">
-              <a href="" class="mainfooter__link">Account</a>
-              <ul class="mainfooter__sublist">
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">Your account</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">Returns Centre</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">100 % purchase protection</a>
-                </li>
-                <li class="mainfooter__subitem">
-                  <a href="" class="mainfooter__sublink">Help</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
         <div class="mainfooter__politic">
           <p class="mainfooter__politicText">Copyright © 2021 DeinSteinDesign. All rights reserved.</p>
           <div class="mainfooter__politicWrap">
-            <span class="mainfooter__politicText">Impressum</span>
-            <span class="mainfooter__politicText">Datenschutzerklärung</span>
+            <router-link to="/impressum" class="mainfooter__politicText">Заявление </router-link>
+            <router-link to="/data" class="mainfooter__politicText">о защите выходных данных </router-link>
           </div>
         </div>
     </footer>
@@ -135,8 +76,12 @@ import AuthForm from "@/components/AuthForm"
       lang: {name: 'ru'},
       show: false,
       formType: 'login', 
+      menu: false
     }),
     watch: {
+      "$route.path"() {
+        this.menu = false
+      },
       "$route.params"(value) {
         if(value.login){
           this.show = true

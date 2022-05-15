@@ -2,23 +2,23 @@
     <main class="DeinSteinDesign">
     <div class="DeinSteinDesign__wrapper">
       <div class="breadcrumbs">
-        <router-link to="home" class="breadcrumbs__link appText">Home</router-link>
+        <router-link to="/" class="breadcrumbs__link appText">Главная</router-link>
         <span>/</span>
-        <a class="breadcrumbs__active">Tiles</a>
+        <a class="breadcrumbs__active">Плитки</a>
       </div>
       <section class="shop">
         <h1 class="appTitle--left appTitle">
-          All our tiles
+          Все наши плитки
         </h1>
         <p class="shop__text appText">
-          At DeinSteinDesign, we pride ourselves on helping customers find the perfect tile for their bathrooms. With our inspiring assortment, you will create the bathroom of your dreams.
+          В DeinSteinDesign мы гордимся тем, что помогаем клиентам найти идеальную плитку для их ванных комнат. С нашим вдохновляющим ассортиментом вы создадите ванную комнату своей мечты.
         </p>
         <div class="shop__row">
           <div class="shop__sidebar sidebar">
             <AppFilter @filterItems="UpdateItems($event)" :Tiles="true"/>           
           </div>
           <div class="shop__items">
-            <shop-item v-for="item in shopItems" :key="item.id" :itemInfo="item" :tile="true"></shop-item>
+            <shop-item v-for="item in shopItems" :key="item.id" :itemInfo="item"></shop-item>
           </div>
         </div>
       </section>
@@ -40,7 +40,7 @@ export default {
     shopItems: [],
   }),
   async mounted(){
-    this.shopItems = await getItems({is_tile: 'true'});
+    this.shopItems = await getItems();
   },
   methods: {
     UpdateItems(result){

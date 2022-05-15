@@ -147,6 +147,10 @@ a, button, input, label{
   line-height: 27px;
   color: var(--lite);
   font-weight: 300;
+  .md-block({
+    font-size: 14px;
+    line-height: 18px;
+  });
 }
 .appTitle{
   font-weight: 600;
@@ -174,6 +178,11 @@ a, button, input, label{
     padding-bottom: 0;
     margin-top: 37px;
   }
+  .md-block({
+    font-size: 24px;
+    line-height: 30px;
+    padding-bottom: 7px;
+  });
 }
 .appCheckbox{
   & input {
@@ -319,10 +328,12 @@ a, button, input, label{
       .u-col(32px);
     }
     &--half{
-      .u-size(6, 12, 32px)
+      .u-size(6, 12, 32px);
+      .size-sm(12);
     }
     &--3{
-      .u-size(3, 12, 32px)
+      .u-size(3, 12, 32px);
+      .size-sm(12);
     }
     &--full{
       .u-size(12, 12, 32px)
@@ -348,6 +359,10 @@ a, button, input, label{
       font-size: 18px;
       line-height: 27px;
       margin-top: 20px;
+      .sm-block({
+        font-size: 15px;
+        line-height: 21px;
+      })
     }
   }
   &__groupCheckbox{
@@ -404,6 +419,10 @@ a, button, input, label{
     display: flex;
     & button{
       width: 50%;
+      .sm-block({
+        padding: 10px;
+        font-size: 14px;
+      })
     }
   }
   &__body{
@@ -416,6 +435,11 @@ a, button, input, label{
     margin-right: auto;
     margin-top: 37px;
     width: 207px;
+    .sm-block({
+      padding: 5px;
+      font-size: 14px;
+      width: 100%;
+    })
   }
 }
 // header
@@ -451,21 +475,77 @@ a, button, input, label{
     display: flex;
     justify-content: space-between;
   }
-}
-.search{
-  border: 2px solid #B2B2B3;
-  display: flex;
-  align-items: center;
-  &__icon{
-    padding: 0 18px;
+  &__menu{
+    display: none;
   }
-  & input{
-    padding: 9px 0;
-    border: 0;
-    width: 100%;
-    font-size: 16px;
+  &__mobilelogo{
+    display: none;
+  }
+  &__logo #logomobile{
+    display: none;
   }
 }
+
+.md-block({
+  .mainnav{
+    &__list{
+      width: unset;
+    }
+    &__item{
+      margin-right: 20px;
+    }
+  }
+});
+.sm-block({
+  .mainnav{
+    align-items: center;
+    &__menu{
+      display: block;
+      cursor: pointer;
+    }
+    &__wrapper{
+      position: fixed;
+      background-color: #fff;
+      transform: translateX(-280px);
+      transition: transform .3s;
+      left: 0;
+      box-shadow: 0px 8px 8px 0px rgba(34, 60, 80, 0.2);
+      top: 0;
+      display: block;
+      height: 100%;
+      width: 280px;
+      padding: 10px;
+      z-index: 200;
+    }
+    &__open{
+      transform: translateX(0);
+      transition: transform .3s;
+    }
+    &__list {
+      display: block;
+    }
+    &__item{
+      border-bottom: 1px solid var(--main);
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    &__icon{
+      margin-top: 20px;
+    }
+    &__mobilelogo{
+      display: block;
+      margin-bottom: 40px;
+    }
+    &__logo #logomobile{
+      display: block;
+    }
+    &__logo #logosite{
+      display: none;
+    }
+  }
+});
+
+
 .icon{
   & a{
     position: relative;
@@ -534,7 +614,14 @@ a, button, input, label{
     margin-left: 16px;
   }
 }
-
+.md-block({
+  .mainfooter{
+    text-align: center;
+    &__politic{
+      flex-wrap: wrap
+    }
+  }
+});
 .text{
   &__block{
     margin-top: 54px;

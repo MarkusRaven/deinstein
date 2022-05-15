@@ -39,10 +39,8 @@
               <Field name="passwordConfirm" id="passwordConfirm" type="password" class="appInput" v-model.trim="passwordConfirm" placeholder="Enter your password again"  autocomplete="on"/>
               <ErrorMessage class="appError" name="passwordConfirm" /> 
             </div>
-            <div class="appError" v-for="(error, index) in errors" :key="index">
-              <div class="" v-for="(err, index1) in error" :key="index1">
-                {{ err }}
-              </div>
+            <div class="appError">
+              {{errors}}
             </div>
             <Spinner v-if="loading" class="mt-5"/>
             <button v-else class="appBtn appBtn--meduim appBtn--outline appModal__btn">REGISTER</button>
@@ -64,10 +62,8 @@
               <Field name="password" id="password" type="password" class="appInput" v-model.trim="password" placeholder="Enter your password" autocomplete="on"/>
               <ErrorMessage class="appError" name="password" />
             </div>
-            <div class="appError" v-for="(error, index) in errors" :key="index">
-              <div class="" v-for="(err, index1) in error" :key="index1">
-                {{ err }}
-              </div>
+            <div class="appError">
+              {{errors}}
             </div>
             <Spinner v-if="loading"/>
             <button v-else class="appBtn appBtn--meduim appBtn--outline appModal__btn">Login</button>
@@ -124,8 +120,8 @@ export default {
         this.value = false
         this.$router.push({name: 'EmailCheck', params: {email: this.emailAuth}})
       }catch (err) {
-        if(err.response){
-          this.errors = err.response.data
+        if(err){
+          err && (this.errors = err)
         }
       }
       this.loading = false
@@ -143,8 +139,8 @@ export default {
         this.value = false
         this.$router.push('/profile')
       }catch (err) {
-        if(err.response){
-          this.errors = err.response.data
+        if(err){
+          err && (this.errors = err)
         }
       }
       this.loading = false
@@ -153,9 +149,9 @@ export default {
   computed: {
     schemaRegistration() {
       return yup.object({
-        emailAuth: yup.string().required().email(),
-        password: yup.string().required(),
-        passwordConfirm: yup.string().required().test('password-confirm', 'password not confirm', value => value === this.password),
+        emailAuth: yup.string().required('email обязательное поле').email('введите верный email'),
+        password: yup.string().required('пароль обязательное поле'),
+        passwordConfirm: yup.string().required('пароль обязательное поле').test('password-confirm', 'пароли не совпадают', value => value === this.password),
       });
     },
     classSuccess(){
@@ -163,8 +159,8 @@ export default {
     },
     schemaLogin() {
       return yup.object({
-        emailAuth: yup.string().required().email(),
-        password: yup.string().required(),
+        emailAuth: yup.string().required('email обязательное поле').email('введите верный email'),
+        password: yup.string().required('пароль обязательное поле'),
       });
     },
     value: {

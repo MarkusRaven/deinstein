@@ -15,7 +15,8 @@ var settings = {
             width: '1100px', /* -> @mediafiles (max-width: 1100px) */
         },
         md: {
-            width: '960px'
+            width: '960px',
+            offset: '20px'
         },
         sm: {
             width: '780px',
