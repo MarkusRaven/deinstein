@@ -81,7 +81,7 @@ export default {
     },
     goToPayment(){
       this.cart.cart.length
-        ? this.$router.push('/payment') : alert('Корзина пустая')
+        ? this.toOrder() : alert('Корзина пустая')
     }
   },
   computed: {
