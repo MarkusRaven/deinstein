@@ -132,9 +132,7 @@ export default {
             obtain: "CDEK"
           })
           
-          const orderId = new FormData
-          orderId.append('id', orderInfo.id)
-          const payInfo = await orderPay(orderId)
+          const payInfo = await orderPay({id: orderInfo.id})
           window.location.href = payInfo.confirmation.confirmation_url
         } catch(e) {
           console.log(e)

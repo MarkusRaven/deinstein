@@ -461,8 +461,12 @@ a, button, input, label{
   }
   &__list{
     display: flex;
-    width: 353px;
-    justify-content: space-between;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 35px;
+  }
+  &__item{
+    margin-left: 35px;
   }
   &__link{
     font-weight: 500;
@@ -489,10 +493,11 @@ a, button, input, label{
 .md-block({
   .mainnav{
     &__list{
-      width: unset;
+      width: unset;  
     }
     &__item{
       margin-right: 20px;
+      margin-left: 0;
     }
   }
 });

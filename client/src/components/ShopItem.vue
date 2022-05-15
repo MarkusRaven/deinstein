@@ -13,11 +13,10 @@
           <span class="shopitem__priceinfo">Цена за m²</span>
           <span class="shopitem__price">{{itemInfo?.price}} р.</span>
         </div>
-        <button 
-          type="button" 
+        <router-link 
           class="shopitem__btn appBtn appBtn--outline"
-          @click="addHandler()"
-        >в корзину</button>
+          :to="{ name: 'Tile', params: {id: itemInfo.id}}"
+        >подробнее</router-link >
       </div>
     </div> 
   </div>
@@ -45,11 +44,6 @@ export default {
       return this.itemInfo.item_desc.substring(0, 100) + '...'
     }
   },
-  methods: {
-    addHandler(){
-      this.$store.dispatch('addToCart', this.itemInfo)
-    }
-  }
 }
 </script>
 

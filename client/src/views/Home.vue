@@ -47,7 +47,7 @@
             <section class="createnow__info">
               <h2 class="appTitle createnow__title">Выберите ваш дизайн</h2>
               <p class="createnow__text appText">Выберите дизайн камня под ваш интерьер</p>
-              <button class="createnow__btn appBtn appBtn--outline">Выбрать сейчас</button>
+              <router-link  to="/Tiles" class="createnow__btn appBtn appBtn--outline">Выбрать сейчас</router-link>
             </section>
           </div>
         </div>  

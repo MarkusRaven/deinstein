@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import {getFilter, getItemsType} from '@/api/shop'
+import {getFilter, getItemsType, getItems} from '@/api/shop'
 
 
 export default {
@@ -44,7 +44,6 @@ export default {
       ...item,
       checked: false
     }))
-    console.log(this.filter )
   },
   methods: {
     clear(){
@@ -61,10 +60,13 @@ export default {
           this.filter.forEach(item => {
             item.checked && idChecked.push(item.id)
           });
+          let result = []
           if(idChecked.length){
-            let result = await getItemsType({productTypeId: idChecked})
-            this.$emit('filterItems', result)
+            result = await getItemsType({productTypeId: idChecked})           
+          }else{
+            result = await getItems()
           }
+          this.$emit('filterItems', result)
         },
         deep: true
      },

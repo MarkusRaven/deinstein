@@ -18,7 +18,7 @@
           <div 
             class="appBtn tile__btn"
             @click="addHandler()"
-          >Купить</div>
+          >В корзину</div>
         </div>
       </div>
     </div>
