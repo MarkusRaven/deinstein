@@ -36,12 +36,12 @@
       </div>
       <div class="cart__total total">
         <h4 class="total__title">
-          Total:
+          Заказ:
         </h4>
         <div class="total__price price">
           <div class="price__info">
-            <p><b>Total Order</b></p>
-            <p>Guaranteed Readiness day: August 21, 2021</p>
+            <p><b>Общая стоимость:</b></p>
+            <p>Гарантированный день доставки 21 августа 2022 года.</p>
           </div>
           <div class="price__count">
             {{totalPrice}} р.

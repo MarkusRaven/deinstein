@@ -4,7 +4,7 @@
       <div class="breadcrumbs">
         <router-link to="/" class="breadcrumbs__link appText">Главная</router-link>
         <span>/</span>
-        <a class="breadcrumbs__active">Плитки</a>
+        <a class="breadcrumbs__active">Каталог</a>
       </div>
       <section class="shop">
         <h1 class="appTitle--left appTitle">

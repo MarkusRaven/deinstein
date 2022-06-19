@@ -25,7 +25,7 @@
       </div>
       <section class="recommend">
         <h2 class="appTitle">
-          Рекомендации для тебя
+          Популярные товары
         </h2>
         <div class="recommend__wrapper product">
           <div class="product__item" v-for="item in shopItems" :key="item.id">

@@ -53,10 +53,10 @@
     <!-- footer -->
     <footer class="mainfooter">
         <div class="mainfooter__politic">
-          <p class="mainfooter__politicText">Copyright © 2021 DeinSteinDesign. All rights reserved.</p>
+          <p class="mainfooter__politicText">Copyright © 2022 DeinSteinDesign. Все права защищены.</p>
           <div class="mainfooter__politicWrap">
-            <router-link to="/impressum" class="mainfooter__politicText">Заявление </router-link>
-            <router-link to="/data" class="mainfooter__politicText">о защите выходных данных </router-link>
+            <router-link to="/impressum" class="mainfooter__politicText">Данные о компании   </router-link>
+            <router-link to="/data" class="mainfooter__politicText">   Политика конфиденциальности</router-link>
           </div>
         </div>
     </footer>

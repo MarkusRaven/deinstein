@@ -10,12 +10,12 @@
           class="appBtn"  
           :class="formType !== 'login' ? 'appBtn--outline' : null"
           @click="formType = 'login'"
-        >Authorization</button>
+        >Авторизация</button>
         <button 
           class="appBtn" 
           :class="formType !== 'registration' ? 'appBtn--outline' : null"
           @click="formType = 'registration'"
-        >Registration</button>
+        >Регистрация</button>
       </header>
       <div class="appModal__body">
         <div class="registration" v-if="formType == 'registration'">
@@ -25,25 +25,25 @@
           <Form class="appForm" @submit="Registration()" :validation-schema="schemaRegistration"> 
             <div class="appForm__group">  
               <label for="emailAuth">E-mail</label>
-              <Field name="emailAuth" id="emailAuth" type="text" class="appInput" v-model.trim="emailAuth" placeholder="Enter your e-mail"/>
+              <Field name="emailAuth" id="emailAuth" type="text" class="appInput" v-model.trim="emailAuth" placeholder="Введите свой e-mail"/>
               <ErrorMessage class="appError" name="emailAuth" />
             </div>
             <div class="appForm__group"> 
-              <label for="password">Password</label>
-              <Field name="password" id="password" type="password" class="appInput" v-model.trim="password" placeholder="Enter your password"  autocomplete="on"/>
-              <p class="appText profileForm__notise">The password must be at least 6 characters long.</p>
+              <label for="password">Пароль</label>
+              <Field name="password" id="password" type="password" class="appInput" v-model.trim="password" placeholder="Введите свой пароль"  autocomplete="on"/>
+              <p class="appText profileForm__notise">Длина пароля должна составлять не менее 6 символов.</p>
               <ErrorMessage class="appError" name="password" />
             </div>
             <div class="appForm__group"> 
-              <label for="passwordConfirm">Password Confirmation</label>
-              <Field name="passwordConfirm" id="passwordConfirm" type="password" class="appInput" v-model.trim="passwordConfirm" placeholder="Enter your password again"  autocomplete="on"/>
+              <label for="passwordConfirm">Подтверждение пароля</label>
+              <Field name="passwordConfirm" id="passwordConfirm" type="password" class="appInput" v-model.trim="passwordConfirm" placeholder="Введите свой пароль еще раз"  autocomplete="on"/>
               <ErrorMessage class="appError" name="passwordConfirm" /> 
             </div>
             <div class="appError">
               {{errors}}
             </div>
             <Spinner v-if="loading" class="mt-5"/>
-            <button v-else class="appBtn appBtn--meduim appBtn--outline appModal__btn">REGISTER</button>
+            <button v-else class="appBtn appBtn--meduim appBtn--outline appModal__btn">РЕГИСТРАЦИЯ</button>
           </Form>
         </div>
         <div class="login" v-if="formType == 'login'">
@@ -54,19 +54,19 @@
             :validation-schema="schemaLogin"> 
             <div class="appForm__group">  
               <label for="emailAuth">E-mail</label>
-              <Field name="emailAuth" id="emailAuth" type="text" class="appInput" v-model.trim="emailAuth" placeholder="Enter your e-mail"/>
+              <Field name="emailAuth" id="emailAuth" type="text" class="appInput" v-model.trim="emailAuth" placeholder="Введите свой e-mail"/>
               <ErrorMessage class="appError" name="emailAuth" />
             </div>
             <div class="appForm__group"> 
-              <label for="password">Password</label>
-              <Field name="password" id="password" type="password" class="appInput" v-model.trim="password" placeholder="Enter your password" autocomplete="on"/>
+              <label for="password">Пароль</label>
+              <Field name="password" id="password" type="password" class="appInput" v-model.trim="password" placeholder="Введите свой пароль" autocomplete="on"/>
               <ErrorMessage class="appError" name="password" />
             </div>
             <div class="appError">
               {{errors}}
             </div>
             <Spinner v-if="loading"/>
-            <button v-else class="appBtn appBtn--meduim appBtn--outline appModal__btn">Login</button>
+            <button v-else class="appBtn appBtn--meduim appBtn--outline appModal__btn">Войти</button>
           </Form>
         </div>
       </div>

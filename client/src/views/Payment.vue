@@ -63,7 +63,7 @@
             </div>  
             <button 
               class="appForm__btn appBtn appBtn--outline"
-            >Complete order</button>
+            >Оплатить</button>
             <div class="appForm__smalltext appText">
               <img src="../assets/img/garant.svg" width="26" height="28" alt="">
               <p class="bold">Персональные данные защищены</p>
@@ -74,7 +74,7 @@
           </Form> 
         </div>
         <div class="payment__order order">
-          <h2 class="appTitle appTitle--left order__title">Order Summary</h2>
+          <h2 class="appTitle appTitle--left order__title">Краткое описание заказа</h2>
           <p class="appText order__text">Цена может варьироваться в зависимости от вашего города.</p>
           <div class="order__item itemSmall" v-for="item in cart.cart" :key="item.id">
             <img :src="`${ApiInstance}${item.product?.photo?.[0]}`"  class="itemSmall__img">
@@ -87,7 +87,7 @@
           </div>
           <div class="total__price price">
             <div class="price__info">
-              <p><b>Total Order</b></p>
+              <p><b>Общая стоимость:</b></p>
             </div>
             <div class="price__count">
               {{totalPrice}} р.

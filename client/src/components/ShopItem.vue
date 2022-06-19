@@ -10,7 +10,6 @@
       <p class="shopitem__text appText">{{description}}</p>
       <div class="shopitem__footer">
         <div class="shopitem__pricewrapper">
-          <span class="shopitem__priceinfo">Цена за m²</span>
           <span class="shopitem__price">{{itemInfo?.price}} р.</span>
         </div>
         <router-link 

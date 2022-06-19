@@ -65,7 +65,7 @@
             <div class="appForm__billingWrap">
               <div class="appForm__group appForm__group--col appForm__group--full"> 
                   <label for="fname">ФИО</label>
-                  <Field v-model="user.full_name" name="first_name" id="first_name" type="text" class="appInput" placeholder="Enter the full name"/>
+                  <Field v-model="user.full_name" name="first_name" id="first_name" type="text" class="appInput" placeholder="Введите полное имя"/>
                   <ErrorMessage class="appError" name="first_name" />
               </div>
               <div class="appForm__group appForm__group--col appForm__group--half"> 

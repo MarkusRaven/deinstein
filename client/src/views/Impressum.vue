@@ -1,6 +1,6 @@
 <template>
   <main class="data appWrapper">
-    <h1 class="appTitle appTitle--left">Выходные данные </h1>
+    <h1 class="appTitle appTitle--left">Данные о компании </h1>
     <div class="text text__block">
       <div class="text__title">Поставщик услуг</div>
       <ul class="text__text appText">
@@ -19,7 +19,7 @@
     <div class="text text__block">
       <div class="text__title">Уполномоченные по представлению</div>
       <ul class="text__text appText">
-        <li>Исполнительные директора, уполномоченные представительством: Тина Олер и Линда Винни ворчат</li>
+        <li>Исполнительные директора, уполномоченные представительством: Тина Олер и Линда Винни</li>
         <li class="text__text">Регистрационный суд: Окружной суд Дрездена</li>
         <li class="text__text">Регистрационный номер: HRB 40323</li>
         <li class="text__text">Идентификационный номер налога с продаж: DE335975861</li>
@@ -43,23 +43,10 @@
       </p>
     </div>
     <div class="text text__block">
-      <div class="text__title">Дизайн, реализация</div>
-      <ul class="text__text appText">
-        <li>Стратегия и создание Puls13 GbR</li>
-        <a class="text__link appLink" href="https://puls13.com">https://puls13.com</a>
-      </ul>
-    </div>
-    <div class="text text__block">
       <div class="text__title">Маркетинговые консультации</div>
       <ul class="text__text appText">
         <li>Anne-Kathrin Liebthal</li>
         <a class="text__link appLink" href="https://www.comigo-marketing.de">https://www.comigo-marketing.de</a>
-      </ul>
-    </div>
-    <div class="text text__block">
-      <div class="text__title">Фотография</div>
-      <ul class="text__text appText">
-        <a class="text__link appLink" href="https://get-shot.de">https://get-shot.de</a>
       </ul>
     </div>
   </main>
