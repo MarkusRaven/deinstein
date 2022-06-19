@@ -30,12 +30,12 @@
         <div class="recommend__wrapper product">
           <div class="product__item" v-for="item in shopItems" :key="item.id">
             <router-link class="shopitem__link" :to="{ name: 'Tile', params: {id: item.id}}">
-              <img :src="`${ApiInstance}${item.photo?.[0]}`" alt="Modern Kitchens" class="product__img">
+              <img :src="`${ApiInstance}${item.photo}`" alt="Modern Kitchens" class="product__img">
             </router-link>
             <div class="product__body">
               <h3 class="product__title">{{item.name}}</h3>
               <p class="appText product__text">{{item.item_desc.substring(0, 100) + '...'}}</p>
-              <router-link to="/Tiles" class="product__btn appBtn appBtn--outline">Подробнее</router-link>
+              <router-link :to="{ name: 'Tile', params: {id: item.id}}" class="product__btn appBtn appBtn--outline">Подробнее</router-link>
             </div>
           </div>
         </div>

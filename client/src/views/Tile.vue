@@ -3,7 +3,7 @@
     <div class="tile__wrapper">
       <div class="tile__row">
         <div class="tile__img">
-          <img :src="`${ApiInstance}${tile?.photo?.[0]}`" alt="">
+          <img :src="`${ApiInstance}${tile?.photo}`" alt="">
         </div>
         <div class="tile__info">
           <div class="appTitle tile__title">

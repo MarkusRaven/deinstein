@@ -3,7 +3,7 @@
     <div class="breadcrumbs">
       <router-link to="/" class="breadcrumbs__link appText">{{$t('home')}}</router-link>
       <span>/</span>
-      <a class="breadcrumbs__active">{{$t('deinsteindesign')}}</a>
+      <a class="breadcrumbs__active">Корзина</a>
     </div>
     <div class="cart__row">
       <div class="cart__info">
@@ -20,7 +20,7 @@
               class="itemSmall__close"
               @click="deleteItem(item)"
             >
-            <img :src="`${ApiInstance}${item.product?.photo?.[0]}`" class="itemSmall__img">
+            <img :src="`${ApiInstance}${item.product?.photo}`" class="itemSmall__img">
             <div class="itemSmall__info">
               <h4 class="itemSmall__title">{{item.product?.name}}</h4>
               <p class="itemSmall__desc">

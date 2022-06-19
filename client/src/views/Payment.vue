@@ -77,7 +77,7 @@
           <h2 class="appTitle appTitle--left order__title">Краткое описание заказа</h2>
           <p class="appText order__text">Цена может варьироваться в зависимости от вашего города.</p>
           <div class="order__item itemSmall" v-for="item in cart.cart" :key="item.id">
-            <img :src="`${ApiInstance}${item.product?.photo?.[0]}`"  class="itemSmall__img">
+            <img :src="`${ApiInstance}${item.product?.photo}`"  class="itemSmall__img">
             <div class="itemSmall__info">
               <h4 class="itemSmall__title">{{item.name}}</h4>
               <div class="itemSmall__price">

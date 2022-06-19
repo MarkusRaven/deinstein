@@ -20,7 +20,6 @@
           <template v-if="orders?.length">
           <div class="history">       
             <div class="history__item itemSmall" v-for="item in orders" :key="item.id">
-              <img src="../assets/img/order1.png" alt="" class="itemSmall__img">
               <div class="itemSmall__info">
                 
                 <h4 class="itemSmall__title">

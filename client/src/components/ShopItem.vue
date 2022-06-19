@@ -1,7 +1,7 @@
 <template>
   <div class="shop__item shopitem">
     <router-link class="shopitem__link" :to="{ name: 'Tile', params: {id: itemInfo.id}}">
-      <img :src="`${ApiInstance}${itemInfo.photo?.[0]}`" alt="">
+      <img :src="`${ApiInstance}${itemInfo.photo}`" alt="">
     </router-link> 
     <div class="shopitem__body">
       <div class="shopitem__header">
